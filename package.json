@@ -1,5 +1,6 @@
 {
   "name": "book-list",
+  "homepage": "https://wgoode3.github.io/reactive-form/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
