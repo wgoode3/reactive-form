@@ -45,7 +45,18 @@ const Form = (props) => {
 
   useEffect( () => {
     checkValid();
-  }, [name, email, password])
+  }, [name, email, password]);
+
+  const formSubmit = (e) => {
+    e.preventDefault();
+    props.createUser({name, email, password});
+    setName("");
+    setEmail("");
+    setPassword("");
+    setNameTouched(false);
+    setEmailTouched(false);
+    setPasswordTouched(false);
+  }
 
   return (
     <div className="message is-info">
@@ -53,13 +64,14 @@ const Form = (props) => {
         <p>Create User</p>
       </div>
       <div className="message-body">
-        <form onSubmit={ (e) => e.preventDefault() }>
+        <form onSubmit={ formSubmit }>
           <div className="field">
             <div className="control">
               <label>Name:</label>
               <input 
                 type="text" 
                 className="input" 
+                value={ name }
                 onChange={e => setName(e.target.value)}
                 onFocus={e => setNameTouched(true)}
               />
@@ -76,6 +88,7 @@ const Form = (props) => {
               <input 
                 type="text" 
                 className="input" 
+                value={ email }
                 onChange={e => setEmail(e.target.value)}
                 onFocus={e => setEmailTouched(true)}
               />
@@ -92,6 +105,7 @@ const Form = (props) => {
               <input 
                 type="password" 
                 className="input" 
+                value={ password }
                 onChange={e => setPassword(e.target.value)}
                 onFocus={e => setPasswordTouched(true)}
               />
